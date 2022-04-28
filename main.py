@@ -1,4 +1,10 @@
+from msilib.schema import File
 import tkinter
+import webbrowser
+from Liga import Liga
+from Analizador_Lexico import Analizador_Lexico
+from reporte_tokens import *
+from reporte_errores import *
 
 ventana = tkinter.Tk()  # Declaracion del GUI ,
 ventana.title("La Liga Bot")  # Mensaje en el GUI
@@ -8,8 +14,9 @@ ventana['bg'] = '#49A'
 
 
 def send():  # Enviamos Mensaje
-    mensaje = mi_mensaje.get()
-    mi_mensaje.set("")  # limpiar despues de enviar un mensaje
+    mensaje = "USUARIO: " + mi_mensaje.get()
+    # limpiar despues de enviar un mensaje
+    mi_mensaje.set("")
     mensaje_list.insert(tkinter.END, mensaje)
 
 
@@ -65,6 +72,34 @@ boton_enviar = tkinter.Button(ventana, text="ENVIAR", command=send)
 boton_enviar.pack()
 boton_enviar.place(x=650, y=430)
 boton_enviar.place(width=100, height=25)
+
+
+def htmlToken():
+    f = open('Tokens.html', 'w')
+
+    mensaje = """<html>
+        <head></head>
+        <body><p>Hola Mundo!</p></body>
+        </html>"""
+
+    f.write(mensaje)
+    f.close()
+
+    webbrowser.open_new_tab('Tokens.html')
+
+
+def htmlerrores():
+    t = open('errores.html', 'w')
+
+    mensaje = """<html>
+        <head></head>
+        <body><p>Hola Mundo!</p></body>
+        </html>"""
+
+    t.write(mensaje)
+    t.close()
+
+    webbrowser.open_new_tab('errores.html')
 
 
 tkinter.mainloop()  # Ejecuta el modo gráfico
